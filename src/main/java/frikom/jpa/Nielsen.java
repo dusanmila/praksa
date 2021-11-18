@@ -5,19 +5,19 @@ import javax.persistence.*;
 
 
 /**
- * The persistent class for the mesecni database table.
+ * The persistent class for the nielsen database table.
  * 
  */
 @Entity
-@NamedQuery(name="Mesecni.findAll", query="SELECT m FROM Mesecni m")
-public class Mesecni implements Serializable {
+@NamedQuery(name="Nielsen.findAll", query="SELECT n FROM Nielsen n")
+public class Nielsen implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="MESECNI_IDMESECNI_GENERATOR", sequenceName="MESECNI_SEQ")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="MESECNI_IDMESECNI_GENERATOR")
-	@Column(name="id_mesecni")
-	private Integer idMesecni;
+	@SequenceGenerator(name="NIELSEN_IDNIELSEN_GENERATOR", sequenceName="NIELSEN_SEQ")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="NIELSEN_IDNIELSEN_GENERATOR")
+	@Column(name="id_nielsen")
+	private Integer idNielsen;
 
 	private Integer prodaja;
 
@@ -41,15 +41,15 @@ public class Mesecni implements Serializable {
 	@JoinColumn(name="id_objekat")
 	private Objekat objekat;
 
-	public Mesecni() {
+	public Nielsen() {
 	}
 
-	public Integer getIdMesecni() {
-		return this.idMesecni;
+	public Integer getIdNielsen() {
+		return this.idNielsen;
 	}
 
-	public void setIdMesecni(Integer idMesecni) {
-		this.idMesecni = idMesecni;
+	public void setIdNielsen(Integer idNielsen) {
+		this.idNielsen = idNielsen;
 	}
 
 	public Integer getProdaja() {
