@@ -2,6 +2,10 @@ package frikom.jpa;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.List;
 
 
@@ -9,6 +13,7 @@ import java.util.List;
  * The persistent class for the lanac database table.
  * 
  */
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 @Entity
 @NamedQuery(name="Lanac.findAll", query="SELECT l FROM Lanac l")
 public class Lanac implements Serializable {
@@ -23,6 +28,7 @@ public class Lanac implements Serializable {
 	private String lanac;
 
 	//bi-directional many-to-one association to Objekat
+	@JsonIgnore
 	@OneToMany(mappedBy="lanac")
 	private List<Objekat> objekats;
 
