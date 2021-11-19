@@ -2,6 +2,9 @@ package frikom.jpa;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.Date;
 import java.util.List;
 
@@ -10,6 +13,7 @@ import java.util.List;
  * The persistent class for the datum database table.
  * 
  */
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 @Entity
 @NamedQuery(name="Datum.findAll", query="SELECT d FROM Datum d")
 public class Datum implements Serializable {

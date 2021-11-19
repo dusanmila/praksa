@@ -2,6 +2,10 @@ package frikom.jpa;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -10,6 +14,7 @@ import java.util.List;
  * The persistent class for the artikl database table.
  * 
  */
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 @Entity
 @NamedQuery(name="Artikl.findAll", query="SELECT a FROM Artikl a")
 public class Artikl implements Serializable {
@@ -51,32 +56,39 @@ public class Artikl implements Serializable {
 	private BigDecimal zapremina;
 
 	//bi-directional many-to-one association to JedMere
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="id_jed_mere")
 	private JedMere jedMere;
 
 	//bi-directional many-to-one association to VrstaAmbal
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="id_vrsta_ambalaze")
 	private VrstaAmbal vrstaAmbal;
 
 	//bi-directional many-to-one association to Dnevni
+	@JsonIgnore
 	@OneToMany(mappedBy="artikl")
 	private List<Dnevni> dnevnis;
 
 	//bi-directional many-to-one association to Lager
+	@JsonIgnore
 	@OneToMany(mappedBy="artikl")
 	private List<Lager> lagers;
 
 	//bi-directional many-to-one association to Mesecni
+	@JsonIgnore
 	@OneToMany(mappedBy="artikl")
 	private List<Mesecni> mesecnis;
 
 	//bi-directional many-to-one association to Nedeljni
+	@JsonIgnore
 	@OneToMany(mappedBy="artikl")
 	private List<Nedeljni> nedeljnis;
 
 	//bi-directional many-to-one association to Nielsen
+	@JsonIgnore
 	@OneToMany(mappedBy="artikl")
 	private List<Nielsen> nielsens;
 
