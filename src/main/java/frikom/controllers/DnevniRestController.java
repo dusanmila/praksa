@@ -72,12 +72,9 @@ public class  DnevniRestController {
     	if(!dnevniRepository.existsById(id)) {
             return new ResponseEntity<Dnevni>(HttpStatus.NO_CONTENT);
         }
-    	else {
-            jdbcTemplate.execute("delete from Dnevni where ID_Dnevni = " + id);
-            dnevniRepository.deleteById(id);
-            
-            return new ResponseEntity<Dnevni>(HttpStatus.OK);
-        }
+    	dnevniRepository.deleteById(id);
+        return new ResponseEntity<Dnevni>(HttpStatus.OK);
+       
     }
 
 }
