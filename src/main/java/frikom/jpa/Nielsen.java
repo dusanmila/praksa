@@ -7,27 +7,22 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 /**
- * The persistent class for the mesecni database table.
+ * The persistent class for the nielsen database table.
  * 
  */
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 @Entity
-@NamedQuery(name="Mesecni.findAll", query="SELECT m FROM Mesecni m")
-public class Mesecni implements Serializable {
+@NamedQuery(name="Nielsen.findAll", query="SELECT n FROM Nielsen n")
+public class Nielsen implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="MESECNI_IDMESECNI_GENERATOR", sequenceName="MESECNI_SEQ")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="MESECNI_IDMESECNI_GENERATOR")
-	@Column(name="id_mesecni")
-	private Integer idMesecni;
+	@SequenceGenerator(name="NIELSEN_IDNIELSEN_GENERATOR", sequenceName="NIELSEN_SEQ")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="NIELSEN_IDNIELSEN_GENERATOR")
+	@Column(name="id_nielsen")
+	private Integer idNielsen;
 
 	private Integer prodaja;
-
-	//bi-directional many-to-one association to Objekat
-	@ManyToOne
-	@JoinColumn(name="id_objekat")
-	private Objekat objekat;
 
 	//bi-directional many-to-one association to Artikl
 	@ManyToOne
@@ -44,15 +39,20 @@ public class Mesecni implements Serializable {
 	@JoinColumn(name="id_datum_od")
 	private Datum datum2;
 
-	public Mesecni() {
+	//bi-directional many-to-one association to Objekat
+	@ManyToOne
+	@JoinColumn(name="id_objekat")
+	private Objekat objekat;
+
+	public Nielsen() {
 	}
 
-	public Integer getIdMesecni() {
-		return this.idMesecni;
+	public Integer getIdNielsen() {
+		return this.idNielsen;
 	}
 
-	public void setIdMesecni(Integer idMesecni) {
-		this.idMesecni = idMesecni;
+	public void setIdNielsen(Integer idNielsen) {
+		this.idNielsen = idNielsen;
 	}
 
 	public Integer getProdaja() {
@@ -61,14 +61,6 @@ public class Mesecni implements Serializable {
 
 	public void setProdaja(Integer prodaja) {
 		this.prodaja = prodaja;
-	}
-
-	public Objekat getObjekat() {
-		return this.objekat;
-	}
-
-	public void setObjekat(Objekat objekat) {
-		this.objekat = objekat;
 	}
 
 	public Artikl getArtikl() {
@@ -93,6 +85,14 @@ public class Mesecni implements Serializable {
 
 	public void setDatum2(Datum datum2) {
 		this.datum2 = datum2;
+	}
+
+	public Objekat getObjekat() {
+		return this.objekat;
+	}
+
+	public void setObjekat(Objekat objekat) {
+		this.objekat = objekat;
 	}
 
 }
