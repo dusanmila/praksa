@@ -304,5 +304,9 @@ public class Artikl implements Serializable {
 
 		return nielsen;
 	}
+	
+	public int getId() {
+		return idArtikl;
+	}
 
 }
