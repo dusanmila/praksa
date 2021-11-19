@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+	<persistence-unit name="Frikom">
+		<class>frikom.jpa.KategObj</class>
+		<class>frikom.jpa.Lanac</class>
+		<class>frikom.jpa.Mesecni</class>
+		<class>frikom.jpa.Mesto</class>
+		<class>frikom.jpa.Objekat</class>
+		<class>frikom.jpa.Dnevni</class>
+		<class>frikom.jpa.Nedeljni</class>
+		<class>frikom.jpa.Nielsen</class>
+		<class>frikom.jpa.Artikl</class>
+		<class>frikom.jpa.JedMere</class>
+		<class>frikom.jpa.VrstaAmbal</class>
+		<class>frikom.jpa.Datum</class>
+		<class>frikom.jpa.IstorCena</class>
+		<class>frikom.jpa.IstorDne</class>
+		<class>frikom.jpa.IstorMes</class>
+		<class>frikom.jpa.IstorNed</class>
+		<class>frikom.jpa.IstorNiel</class>
+		<class>frikom.jpa.Kategorija</class>
+		<class>frikom.jpa.Lager</class>
+	</persistence-unit>
+</persistence>
