@@ -72,12 +72,9 @@ public class  NielsenRestController {
     	if(!nielsenRepository.existsById(id)) {
             return new ResponseEntity<Nielsen>(HttpStatus.NO_CONTENT);
         }
-    	else {
-            jdbcTemplate.execute("delete from Nielsen where ID_Nielsen = " + id);
-            nielsenRepository.deleteById(id);
-            
-            return new ResponseEntity<Nielsen>(HttpStatus.OK);
-        }
+    	nielsenRepository.deleteById(id);
+        return new ResponseEntity<Nielsen>(HttpStatus.OK);
+        
     }
 
 }
