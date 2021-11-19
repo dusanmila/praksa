@@ -13,6 +13,7 @@ import java.util.List;
  * The persistent class for the objekat database table.
  * 
  */
+
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 @Entity
 @NamedQuery(name="Objekat.findAll", query="SELECT o FROM Objekat o")
