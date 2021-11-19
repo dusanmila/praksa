@@ -2,6 +2,10 @@ package frikom.jpa;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.Date;
 import java.util.List;
 
@@ -10,6 +14,7 @@ import java.util.List;
  * The persistent class for the datum database table.
  * 
  */
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 @Entity
 @NamedQuery(name="Datum.findAll", query="SELECT d FROM Datum d")
 public class Datum implements Serializable {
@@ -25,30 +30,37 @@ public class Datum implements Serializable {
 	private Date datum;
 
 	//bi-directional many-to-one association to Dnevni
+	@JsonIgnore
 	@OneToMany(mappedBy="datum")
 	private List<Dnevni> dnevnis;
 
 	//bi-directional many-to-one association to Mesecni
+	@JsonIgnore
 	@OneToMany(mappedBy="datum1")
 	private List<Mesecni> mesecnis1;
 
 	//bi-directional many-to-one association to Mesecni
+	@JsonIgnore
 	@OneToMany(mappedBy="datum2")
 	private List<Mesecni> mesecnis2;
 
 	//bi-directional many-to-one association to Nedeljni
+	@JsonIgnore
 	@OneToMany(mappedBy="datum1")
 	private List<Nedeljni> nedeljnis1;
 
 	//bi-directional many-to-one association to Nedeljni
+	@JsonIgnore
 	@OneToMany(mappedBy="datum2")
 	private List<Nedeljni> nedeljnis2;
 
 	//bi-directional many-to-one association to Nielsen
+	@JsonIgnore
 	@OneToMany(mappedBy="datum1")
 	private List<Nielsen> nielsens1;
 
 	//bi-directional many-to-one association to Nielsen
+	@JsonIgnore
 	@OneToMany(mappedBy="datum2")
 	private List<Nielsen> nielsens2;
 

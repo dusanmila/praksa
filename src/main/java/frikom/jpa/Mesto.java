@@ -13,6 +13,7 @@ import java.util.List;
  * The persistent class for the mesto database table.
  * 
  */
+
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 @Entity
 @NamedQuery(name="Mesto.findAll", query="SELECT m FROM Mesto m")

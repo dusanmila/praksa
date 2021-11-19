@@ -3,11 +3,14 @@ package frikom.jpa;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 /**
  * The persistent class for the nielsen database table.
  * 
  */
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 @Entity
 @NamedQuery(name="Nielsen.findAll", query="SELECT n FROM Nielsen n")
 public class Nielsen implements Serializable {

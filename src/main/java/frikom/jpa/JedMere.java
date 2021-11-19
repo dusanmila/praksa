@@ -2,6 +2,10 @@ package frikom.jpa;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.List;
 
 
@@ -9,6 +13,7 @@ import java.util.List;
  * The persistent class for the jed_mere database table.
  * 
  */
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 @Entity
 @Table(name="jed_mere")
 @NamedQuery(name="JedMere.findAll", query="SELECT j FROM JedMere j")
@@ -25,6 +30,7 @@ public class JedMere implements Serializable {
 	private String jedinicaMere;
 
 	//bi-directional many-to-one association to Artikl
+	@JsonIgnore
 	@OneToMany(mappedBy="jedMere")
 	private List<Artikl> artikls;
 

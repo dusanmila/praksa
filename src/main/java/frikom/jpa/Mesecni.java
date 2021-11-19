@@ -3,11 +3,14 @@ package frikom.jpa;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 /**
  * The persistent class for the mesecni database table.
  * 
  */
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 @Entity
 @NamedQuery(name="Mesecni.findAll", query="SELECT m FROM Mesecni m")
 public class Mesecni implements Serializable {

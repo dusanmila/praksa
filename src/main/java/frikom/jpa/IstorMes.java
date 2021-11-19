@@ -3,11 +3,14 @@ package frikom.jpa;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 /**
  * The persistent class for the istor_mes database table.
  * 
  */
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 @Entity
 @Table(name="istor_mes")
 @NamedQuery(name="IstorMes.findAll", query="SELECT i FROM IstorMes i")

@@ -28,6 +28,7 @@ public class Lanac implements Serializable {
 	private String lanac;
 
 	//bi-directional many-to-one association to Objekat
+	
 	@JsonIgnore
 	@OneToMany(mappedBy="lanac")
 	private List<Objekat> objekats;
