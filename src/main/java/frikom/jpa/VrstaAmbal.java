@@ -75,4 +75,8 @@ public class VrstaAmbal implements Serializable {
 		return artikl;
 	}
 
+	public int getId() {
+		return idVrstaAmbalaze;
+	}
+	
 }
