@@ -73,12 +73,9 @@ public class  MesecniRestController {
     	if(!mesecniRepository.existsById(id)) {
             return new ResponseEntity<Mesecni>(HttpStatus.NO_CONTENT);
         }
-    	else {
-            jdbcTemplate.execute("delete from Mesecni where ID_Mesecni = " + id);
-            mesecniRepository.deleteById(id);
-            
-            return new ResponseEntity<Mesecni>(HttpStatus.OK);
-        }
+    	mesecniRepository.deleteById(id);
+        return new ResponseEntity<Mesecni>(HttpStatus.OK);
+        
     }
 
 }
