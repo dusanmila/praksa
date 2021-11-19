@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import frikom.jpa. Dnevni;
 import frikom.repos. DnevniRepository;
-
+ 
 @CrossOrigin
 @RestController
 public class  DnevniRestController {

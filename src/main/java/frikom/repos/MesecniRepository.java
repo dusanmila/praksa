@@ -8,3 +8,4 @@ import frikom.jpa.Mesecni;
 public interface MesecniRepository  extends JpaRepository<Mesecni, Integer> {
 
 }
+ 

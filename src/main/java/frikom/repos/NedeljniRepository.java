@@ -9,3 +9,4 @@ import frikom.jpa.Nedeljni;
 public interface NedeljniRepository extends JpaRepository<Nedeljni, Integer> { 
 
 }
+ 

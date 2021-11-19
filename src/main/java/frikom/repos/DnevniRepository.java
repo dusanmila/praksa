@@ -12,4 +12,4 @@ public interface DnevniRepository extends JpaRepository<Dnevni, Integer> {
 
 	
 
-}
+} 

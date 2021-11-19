@@ -8,3 +8,4 @@ import frikom.jpa.Nielsen;
 public interface NielsenRepository  extends JpaRepository<Nielsen, Integer> {
 
 }
+ 

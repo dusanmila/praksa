@@ -52,7 +52,7 @@ public class  NedeljniRestController {
         	
             return new ResponseEntity<Nedeljni>(HttpStatus.CONFLICT);
         }
-    }
+    } 
     
     @PutMapping("nedeljni")
     public ResponseEntity<Nedeljni> updateNedeljni(@RequestBody Nedeljni nedeljni){
