@@ -10,6 +10,7 @@ public class AuthenticationRequest {
 		this.username = username;
 		this.password = password;
 	}
+	
 	private String username;
 	private String password;
 	public String getUsername() {
