@@ -1,3 +1,4 @@
+
 package frikom.models;
 
 public class AuthenticationRequest {
@@ -26,3 +27,4 @@ public class AuthenticationRequest {
 	}
 	
 }
+

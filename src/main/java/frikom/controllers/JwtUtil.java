@@ -1,3 +1,4 @@
+
 package frikom.controllers;
 
 import java.util.Date;
@@ -55,3 +56,4 @@ public class JwtUtil {
     }
 	
 }
+

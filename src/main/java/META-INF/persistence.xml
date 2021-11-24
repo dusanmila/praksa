@@ -20,5 +20,6 @@
 		<class>frikom.jpa.IstorNiel</class>
 		<class>frikom.jpa.Kategorija</class>
 		<class>frikom.jpa.Lager</class>
+		<class>frikom.jpa.User</class>
 	</persistence-unit>
 </persistence>

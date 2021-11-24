@@ -1,3 +1,4 @@
+
 package frikom.models;
 
 public class AuthenticationResponse {
@@ -13,3 +14,4 @@ public class AuthenticationResponse {
 	}
 	
 }
+
