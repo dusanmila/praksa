@@ -1,3 +1,4 @@
+
 package frikom.controllers;
 
 import java.util.Date;
@@ -5,8 +6,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -57,3 +56,4 @@ public class JwtUtil {
     }
 	
 }
+
