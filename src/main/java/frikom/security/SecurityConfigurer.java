@@ -36,7 +36,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().authorizeRequests().antMatchers("/**","/authenticate","/swagger-ui.html","/vrstaambal","/jedmere","/kategorija","/artikl","/datum","/dnevni","/istorCena","/istorDne","/istorMes","/istorNed","/istorNiel","/kategObj","/lager","/lanac","/mesecni","/mesto","/nedeljni","/nielsen","/objekat","/swagger-ui").permitAll().anyRequest().authenticated()
+		http.csrf().disable().authorizeRequests().antMatchers("/**","/authenticate/","/swagger-ui.html","/vrstaambal","/jedmere","/kategorija","/datum","/dnevni","/istorCena","/istorDne","/istorMes","/istorNed","/istorNiel","/kategObj","/lager","/lanac","/mesecni","/mesto","/nedeljni","/nielsen","/objekat","/swagger-ui").permitAll().anyRequest().authenticated()
 		.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	
 		http.addFilterBefore(jwtRequestFilter,UsernamePasswordAuthenticationFilter.class);
@@ -49,9 +49,13 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 		return super.authenticationManagerBean();
 	}
 	
-	@Bean
+	/*@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
-	}
+	} */
 	
+	@Bean
+    public PasswordEncoder passwordEncoder() {
+        return NoOpPasswordEncoder.getInstance();
+    }
 }

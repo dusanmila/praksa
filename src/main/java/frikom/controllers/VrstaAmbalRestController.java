@@ -52,7 +52,7 @@ public class VrstaAmbalRestController {
 	@PostMapping
 	@ApiOperation(value = "Inserts a new packaging type")
 	public ResponseEntity<VrstaAmbal> insertVrstaAmbal(@RequestBody VrstaAmbal vrstaambal){
-		if(!vrstaAmbalRepository.existsById(vrstaambal.getId())) {
+		if(!vrstaAmbalRepository.existsById(vrstaambal.getIdVrstaAmbalaze())) {
 			vrstaAmbalRepository.save(vrstaambal);
 			
 			return new ResponseEntity<VrstaAmbal>(HttpStatus.OK);
@@ -64,7 +64,7 @@ public class VrstaAmbalRestController {
 	@PutMapping("vrstaambal")
 	@ApiOperation(value = "Updates an existing packaging type")
 	public ResponseEntity<VrstaAmbal> updateVrstaAmbal(@RequestBody VrstaAmbal vrstaambal){
-		if(!vrstaAmbalRepository.existsById(vrstaambal.getId())) {
+		if(!vrstaAmbalRepository.existsById(vrstaambal.getIdVrstaAmbalaze())) {
 			
 			return new ResponseEntity<VrstaAmbal>(HttpStatus.NO_CONTENT);
 		}else {

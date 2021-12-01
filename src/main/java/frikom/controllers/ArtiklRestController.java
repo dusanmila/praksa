@@ -50,7 +50,7 @@ public class ArtiklRestController {
 	@PostMapping("artikl")
 	@ApiOperation(value = "Inserts a new article")
 	public ResponseEntity<Artikl> insertArtikl(@RequestBody Artikl artikl){
-		if(!artiklRepository.existsById(artikl.getId())) {
+		if(!artiklRepository.existsById(artikl.getIdArtikl())) {
 			artiklRepository.save(artikl);
 			
 			return new ResponseEntity<Artikl>(HttpStatus.OK);
@@ -62,7 +62,7 @@ public class ArtiklRestController {
 	@PutMapping("artikl")
 	@ApiOperation(value = "Updates an article")
 	public ResponseEntity<Artikl> updateArtikl(@RequestBody Artikl artikl){
-		if(!artiklRepository.existsById(artikl.getId())) {
+		if(!artiklRepository.existsById(artikl.getIdArtikl())) {
 			
 			return new ResponseEntity<Artikl>(HttpStatus.NO_CONTENT);
 		}else {

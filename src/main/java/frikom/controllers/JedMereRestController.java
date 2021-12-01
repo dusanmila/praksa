@@ -50,7 +50,7 @@ public class JedMereRestController {
 	@PostMapping("jedmere")
 	@ApiOperation(value = "Inserts a new measurement unit")
 	public ResponseEntity<JedMere> insertJedMere(@RequestBody JedMere jedmere){
-		if(!jedMereRepository.existsById(jedmere.getId())) {
+		if(!jedMereRepository.existsById(jedmere.getIdJedMere())) {
 			jedMereRepository.save(jedmere);
 			
 			return new ResponseEntity<JedMere>(HttpStatus.OK);
@@ -62,7 +62,7 @@ public class JedMereRestController {
 	@PutMapping("jedmere")
 	@ApiOperation(value = "Updates an existing measurement unit")
 	public ResponseEntity<JedMere> updateJedMere(@RequestBody JedMere jedmere){
-		if(!jedMereRepository.existsById(jedmere.getId())) {
+		if(!jedMereRepository.existsById(jedmere.getIdJedMere())) {
 			
 			return new ResponseEntity<JedMere>(HttpStatus.NO_CONTENT);
 		}else {
