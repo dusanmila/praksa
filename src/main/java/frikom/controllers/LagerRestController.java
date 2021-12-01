@@ -17,9 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import frikom.jpa.Lager;
 import frikom.repos.LagerRepository;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @CrossOrigin
 @RestController
+@Api(tags = "Stock REST controller")
 public class LagerRestController {
 
 	@Autowired
@@ -29,16 +32,19 @@ public class LagerRestController {
 	private JdbcTemplate jdbcTemplate;
 
 	@GetMapping("lager")
+	@ApiOperation(value = "Returns all stocks")
 	public Collection<Lager> getLageri() {
 		return lagerRepository.findAll();
 	}
 
 	@GetMapping("lager/{id}")
+	@ApiOperation(value = "Returns a stock by id")
 	public Lager getLager(@PathVariable("id") Integer id) {
 		return lagerRepository.getById(id);
 	}
 
 	@PostMapping("lager")
+	@ApiOperation(value = "Inserts a new stock")
 	public ResponseEntity<Lager> insertLager(@RequestBody Lager lager) {
 		if (!lagerRepository.existsById(lager.getIdLager())) {
 			lagerRepository.save(lager);
@@ -48,6 +54,7 @@ public class LagerRestController {
 	}
 
 	@PutMapping("lager")
+	@ApiOperation(value = "Updates an existing stock")
 	public ResponseEntity<Lager> updateLager(@RequestBody Lager lager) {
 		if (!lagerRepository.existsById(lager.getIdLager())) {
 			return new ResponseEntity<Lager>(HttpStatus.CONFLICT);
@@ -57,6 +64,7 @@ public class LagerRestController {
 	}
 
 	@DeleteMapping("lager/{id}")
+	@ApiOperation(value = "Deletes an existing stock")
 	public ResponseEntity<Lager> deleteLager(@PathVariable("id") Integer id) {
 		if (!lagerRepository.existsById(id)) {
 			return new ResponseEntity<Lager>(HttpStatus.CONFLICT);

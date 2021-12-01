@@ -17,9 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import frikom.jpa.Objekat;
 import frikom.repos.ObjekatRepository;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @CrossOrigin
 @RestController
+@Api(tags = "Object REST controller")
 public class ObjekatRestController {
 
 	@Autowired
@@ -29,21 +32,25 @@ public class ObjekatRestController {
 	private JdbcTemplate jdbcTemplate;
 
 	@GetMapping("objekat")
+	@ApiOperation(value = "Returns all objects from the database")
 	public Collection<Objekat> getObjekti() {
 		return objekatRepository.findAll();
 	}
 
 	@GetMapping("objekat/{id}")
+	@ApiOperation(value = "Returns an object by id")
 	public Objekat getObjekat(@PathVariable("id") Integer id) {
 		return objekatRepository.getById(id);
 	}
 
 //	@GetMapping("objekat/{naziv}")
+//	@ApiOperation(value = "Returns objects by name")
 //	public Collection<Objekat> getObjekatByNaziv(@PathVariable("naziv") String naziv) {
 //		return objekatRepository.findObjekatByNazivObjektaContainingIgnoreCase(naziv);
 //	}
 
 	@PostMapping("objekat")
+	@ApiOperation(value = "Inserts a new object in the database")
 	public ResponseEntity<Objekat> insertObjekat(@RequestBody Objekat objekat) {
 		if (!objekatRepository.existsById(objekat.getIdObjekat())) {
 			objekatRepository.save(objekat);
@@ -53,6 +60,7 @@ public class ObjekatRestController {
 	}
 
 	@PutMapping("objekat")
+	@ApiOperation(value = "Updates an existing object")
 	public ResponseEntity<Objekat> updateObjekat(@RequestBody Objekat objekat) {
 		if (!objekatRepository.existsById(objekat.getIdObjekat())) {
 			return new ResponseEntity<Objekat>(HttpStatus.CONFLICT);
@@ -62,6 +70,7 @@ public class ObjekatRestController {
 	}
 
 	@DeleteMapping("objekat/{id}")
+	@ApiOperation(value = "Deletes an existing object")
 	public ResponseEntity<Objekat> deleteObjekat(@PathVariable("id") Integer id) {
 		if (!objekatRepository.existsById(id)) {
 			return new ResponseEntity<Objekat>(HttpStatus.CONFLICT);

@@ -17,9 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import frikom.jpa. IstorNed;
 import frikom.repos. IstorNedRepository;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
  
 @CrossOrigin
 @RestController
+@Api(tags = "Weekly report history REST controller")
 public class  IstorNedRestController {
 
     @Autowired
@@ -29,12 +32,14 @@ public class  IstorNedRestController {
     private IstorNedRepository istorNedRepository;
 
     @GetMapping("istorNed")
+	@ApiOperation(value = "Returns all weekly report histories")
     public Collection< IstorNed> getIstorNed(){
     	
         return istorNedRepository.findAll();
     }
     
     @GetMapping("istorNed/{id}")
+	@ApiOperation(value = "Returns a weekly report history by id")
     public IstorNed getIstorNed(@PathVariable ("id") Integer id) {
     	
         return istorNedRepository.getById(id);
@@ -42,6 +47,7 @@ public class  IstorNedRestController {
     
   
     @PostMapping("istorNed")
+	@ApiOperation(value = "Inserts a new weekly report history")
     public ResponseEntity<IstorNed> insertIstorNed(@RequestBody IstorNed istorNed){
         if(!istorNedRepository.existsById(istorNed.getIdIstorNed())) {
         	istorNedRepository.save(istorNed);

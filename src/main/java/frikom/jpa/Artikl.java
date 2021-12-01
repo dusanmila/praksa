@@ -56,13 +56,13 @@ public class Artikl implements Serializable {
 	private BigDecimal zapremina;
 
 	//bi-directional many-to-one association to JedMere
-	@JsonIgnore
+
 	@ManyToOne
 	@JoinColumn(name="id_jed_mere")
 	private JedMere jedMere;
 
 	//bi-directional many-to-one association to VrstaAmbal
-	@JsonIgnore
+	
 	@ManyToOne
 	@JoinColumn(name="id_vrsta_ambalaze")
 	private VrstaAmbal vrstaAmbal;

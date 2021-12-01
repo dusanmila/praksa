@@ -17,9 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import frikom.jpa. IstorMes;
 import frikom.repos. IstorMesRepository;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
  
 @CrossOrigin
 @RestController
+@Api(tags = "Monthly report history REST controller")
 public class  IstorMesRestController {
 
     @Autowired
@@ -29,12 +32,14 @@ public class  IstorMesRestController {
     private IstorMesRepository istorMesRepository;
 
     @GetMapping("istorMes")
+	@ApiOperation(value = "Returns all monthly report histories")
     public Collection< IstorMes> getIstorMes(){
     	
         return istorMesRepository.findAll();
     }
     
     @GetMapping("istorMes/{id}")
+	@ApiOperation(value = "Returns a monthly report history by id")
     public IstorMes getIstorMes(@PathVariable ("id") Integer id) {
     	
         return istorMesRepository.getById(id);
@@ -42,6 +47,7 @@ public class  IstorMesRestController {
     
   
     @PostMapping("istorMes")
+	@ApiOperation(value = "Inserts a new monthly report history")
     public ResponseEntity<IstorMes> insertIstorMes(@RequestBody IstorMes istorMes){
         if(!istorMesRepository.existsById(istorMes.getIdIstorMes())) {
         	istorMesRepository.save(istorMes);
@@ -55,6 +61,7 @@ public class  IstorMesRestController {
     }
     
     @PutMapping("istorMes")
+	@ApiOperation(value = "Updates an existing monthly report history")
     public ResponseEntity<IstorMes> updateIstorMes(@RequestBody IstorMes istorMes){
         if(!istorMesRepository.existsById(istorMes.getIdIstorMes())) {
             
@@ -68,6 +75,7 @@ public class  IstorMesRestController {
     }
     
     @DeleteMapping("istorMes/{id}")
+	@ApiOperation(value = "Deletes an existing monthly report history")
     public ResponseEntity<IstorMes> deleteIstorMes(@PathVariable("id") Integer id){
     	if(!istorMesRepository.existsById(id)) {
             return new ResponseEntity<IstorMes>(HttpStatus.NO_CONTENT);

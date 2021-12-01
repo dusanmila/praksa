@@ -18,9 +18,12 @@ import frikom.models.AuthenticationRequest;
 import frikom.models.AuthenticationResponse;
 import frikom.security.MyUserDetailsService;
 import frikom.security.SecurityConfigurer;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 
 @RestController
+@Api(tags = {"Authentication REST controller"})
 public class AuthenticationRestController {
 	
 	@Autowired
@@ -36,6 +39,7 @@ public class AuthenticationRestController {
 	private SecurityConfigurer securityConfigurer;
 
 	@RequestMapping(value="/authenticate",method=RequestMethod.POST)
+	@ApiOperation(value = "Endpoint for user authentication")
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception{
 		try {
 			authenticationManager.authenticate(

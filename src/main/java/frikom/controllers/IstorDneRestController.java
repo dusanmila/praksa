@@ -17,9 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import frikom.jpa. IstorDne;
 import frikom.repos. IstorDneRepository;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
  
 @CrossOrigin
 @RestController
+@Api(tags = "Daily report history REST controller")
 public class  IstorDneRestController {
 
     @Autowired
@@ -29,12 +32,14 @@ public class  IstorDneRestController {
     private IstorDneRepository istorDneRepository;
 
     @GetMapping("istorDne")
+	@ApiOperation(value = "Returns all daily report histories")
     public Collection< IstorDne> getIstorDne(){
     	
         return istorDneRepository.findAll();
     }
     
     @GetMapping("istorDne/{id}")
+	@ApiOperation(value = "Returns a daily report history by id")
     public IstorDne getIstorDne(@PathVariable ("id") Integer id) {
     	
         return istorDneRepository.getById(id);
@@ -42,6 +47,7 @@ public class  IstorDneRestController {
     
   
     @PostMapping("istorDne")
+	@ApiOperation(value = "Inserts a new daily report history")
     public ResponseEntity<IstorDne> insertIstorDne(@RequestBody IstorDne istorDne){
         if(!istorDneRepository.existsById(istorDne.getIdIstorDne())) {
         	istorDneRepository.save(istorDne);
@@ -55,6 +61,7 @@ public class  IstorDneRestController {
     }
     
     @PutMapping("istorDne")
+	@ApiOperation(value = "Updates an existing daily report history")
     public ResponseEntity<IstorDne> updateIstorDne(@RequestBody IstorDne istorDne){
         if(!istorDneRepository.existsById(istorDne.getIdIstorDne())) {
             
@@ -68,6 +75,7 @@ public class  IstorDneRestController {
     }
     
     @DeleteMapping("istorDne/{id}")
+	@ApiOperation(value = "Deletes an existing daily report history")
     public ResponseEntity<IstorDne> deleteIstorDne(@PathVariable("id") Integer id){
     	if(!istorDneRepository.existsById(id)) {
             return new ResponseEntity<IstorDne>(HttpStatus.NO_CONTENT);

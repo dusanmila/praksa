@@ -15,15 +15,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 import frikom.jpa.Artikl;
 import frikom.repos.ArtiklRepository;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @CrossOrigin
 @RestController
+@Api(tags = {"Article REST controller"})
 public class ArtiklRestController {
 
 	@Autowired	
 	private ArtiklRepository artiklRepository;
 
 	@GetMapping("artikl")
+	@ApiOperation(value = "Returns all the articles from the database")
 	public Collection<Artikl> getArtikls() {
 		return artiklRepository.findAll();
 	}
@@ -31,17 +35,20 @@ public class ArtiklRestController {
 
 	
 	@GetMapping("artikl/{naziv}")
+	@ApiOperation(value = "Returns articles by article name")
 	public Collection<Artikl> getArtiklByNaziv(@PathVariable ("naziv") String naziv) {
 		return artiklRepository.findBynazivContainingIgnoreCase(naziv);
 	}
 	
 	
 	@GetMapping("artikl/{id}")
+	@ApiOperation(value = "Returns article by id")
 	public Artikl getArtiklByID(@PathVariable ("id") Integer id) {
 		return artiklRepository.getById(id);
 	}
 	
 	@PostMapping("artikl")
+	@ApiOperation(value = "Inserts a new article")
 	public ResponseEntity<Artikl> insertArtikl(@RequestBody Artikl artikl){
 		if(!artiklRepository.existsById(artikl.getId())) {
 			artiklRepository.save(artikl);
@@ -53,6 +60,7 @@ public class ArtiklRestController {
 	}
 	
 	@PutMapping("artikl")
+	@ApiOperation(value = "Updates an article")
 	public ResponseEntity<Artikl> updateArtikl(@RequestBody Artikl artikl){
 		if(!artiklRepository.existsById(artikl.getId())) {
 			
