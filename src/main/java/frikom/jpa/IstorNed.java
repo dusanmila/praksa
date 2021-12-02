@@ -3,14 +3,11 @@ package frikom.jpa;
 import java.io.Serializable;
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 
 /**
  * The persistent class for the istor_ned database table.
  * 
  */
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 @Entity
 @Table(name="istor_ned")
 @NamedQuery(name="IstorNed.findAll", query="SELECT i FROM IstorNed i")
@@ -23,19 +20,27 @@ public class IstorNed implements Serializable {
 	@Column(name="id_istor_ned")
 	private Integer idIstorNed;
 
-	@Column(name="id_artikl")
-	private Integer idArtikl;
-
-	@Column(name="id_datum_do")
-	private Integer idDatumDo;
-
-	@Column(name="id_datum_od")
-	private Integer idDatumOd;
-
-	@Column(name="id_objekat")
-	private Integer idObjekat;
-
 	private Integer prodaja;
+
+	//bi-directional many-to-one association to Datum
+	@ManyToOne
+	@JoinColumn(name="id_datum_do")
+	private Datum datum1;
+
+	//bi-directional many-to-one association to Datum
+	@ManyToOne
+	@JoinColumn(name="id_datum_od")
+	private Datum datum2;
+
+	//bi-directional many-to-one association to Artikl
+	@ManyToOne
+	@JoinColumn(name="id_artikl")
+	private Artikl artikl;
+
+	//bi-directional many-to-one association to Objekat
+	@ManyToOne
+	@JoinColumn(name="id_objekat")
+	private Objekat objekat;
 
 	public IstorNed() {
 	}
@@ -48,44 +53,44 @@ public class IstorNed implements Serializable {
 		this.idIstorNed = idIstorNed;
 	}
 
-	public Integer getIdArtikl() {
-		return this.idArtikl;
-	}
-
-	public void setIdArtikl(Integer idArtikl) {
-		this.idArtikl = idArtikl;
-	}
-
-	public Integer getIdDatumDo() {
-		return this.idDatumDo;
-	}
-
-	public void setIdDatumDo(Integer idDatumDo) {
-		this.idDatumDo = idDatumDo;
-	}
-
-	public Integer getIdDatumOd() {
-		return this.idDatumOd;
-	}
-
-	public void setIdDatumOd(Integer idDatumOd) {
-		this.idDatumOd = idDatumOd;
-	}
-
-	public Integer getIdObjekat() {
-		return this.idObjekat;
-	}
-
-	public void setIdObjekat(Integer idObjekat) {
-		this.idObjekat = idObjekat;
-	}
-
 	public Integer getProdaja() {
 		return this.prodaja;
 	}
 
 	public void setProdaja(Integer prodaja) {
 		this.prodaja = prodaja;
+	}
+
+	public Datum getDatum1() {
+		return this.datum1;
+	}
+
+	public void setDatum1(Datum datum1) {
+		this.datum1 = datum1;
+	}
+
+	public Datum getDatum2() {
+		return this.datum2;
+	}
+
+	public void setDatum2(Datum datum2) {
+		this.datum2 = datum2;
+	}
+
+	public Artikl getArtikl() {
+		return this.artikl;
+	}
+
+	public void setArtikl(Artikl artikl) {
+		this.artikl = artikl;
+	}
+
+	public Objekat getObjekat() {
+		return this.objekat;
+	}
+
+	public void setObjekat(Objekat objekat) {
+		this.objekat = objekat;
 	}
 
 }

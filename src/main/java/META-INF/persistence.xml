@@ -5,21 +5,21 @@
 		<class>frikom.jpa.Lanac</class>
 		<class>frikom.jpa.Mesecni</class>
 		<class>frikom.jpa.Mesto</class>
-		<class>frikom.jpa.Objekat</class>
 		<class>frikom.jpa.Dnevni</class>
 		<class>frikom.jpa.Nedeljni</class>
 		<class>frikom.jpa.Nielsen</class>
-		<class>frikom.jpa.Artikl</class>
 		<class>frikom.jpa.JedMere</class>
 		<class>frikom.jpa.VrstaAmbal</class>
-		<class>frikom.jpa.Datum</class>
 		<class>frikom.jpa.IstorCena</class>
+		<class>frikom.jpa.Kategorija</class>
+		<class>frikom.jpa.Lager</class>
+		<class>frikom.jpa.User</class>
+		<class>frikom.jpa.Artikl</class>
+		<class>frikom.jpa.Datum</class>
 		<class>frikom.jpa.IstorDne</class>
 		<class>frikom.jpa.IstorMes</class>
 		<class>frikom.jpa.IstorNed</class>
 		<class>frikom.jpa.IstorNiel</class>
-		<class>frikom.jpa.Kategorija</class>
-		<class>frikom.jpa.Lager</class>
-		<class>frikom.jpa.User</class>
+		<class>frikom.jpa.Objekat</class>
 	</persistence-unit>
 </persistence>
