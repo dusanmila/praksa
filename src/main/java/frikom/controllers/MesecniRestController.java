@@ -17,9 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import frikom.jpa. Mesecni;
 import frikom.repos. MesecniRepository;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @CrossOrigin
 @RestController
+@Api(tags = "Monthly report REST controller")
 public class  MesecniRestController {
 
     @Autowired
@@ -29,12 +32,14 @@ public class  MesecniRestController {
     private MesecniRepository mesecniRepository;
 
     @GetMapping("mesecni")
+	@ApiOperation(value = "Returns all monthly reports")
     public Collection< Mesecni> getMesecni(){
     	
         return mesecniRepository.findAll();
     }
     
     @GetMapping("mesecni/{id}")
+	@ApiOperation(value = "Returns a monthly report by id")
     public Mesecni getMesecni(@PathVariable ("id") Integer id) {
     	
         return mesecniRepository.getById(id);
@@ -42,6 +47,7 @@ public class  MesecniRestController {
     
   
     @PostMapping("mesecni")
+	@ApiOperation(value = "Inserts a new monthly report")
     public ResponseEntity<Mesecni> insertMesecni(@RequestBody Mesecni mesecni){
         if(!mesecniRepository.existsById(mesecni.getIdMesecni())) {
         	mesecniRepository.save(mesecni);
@@ -56,6 +62,7 @@ public class  MesecniRestController {
     }
     
     @PutMapping("mesecni")
+	@ApiOperation(value = "Updates an existing monthly report")
     public ResponseEntity<Mesecni> updateMesecni(@RequestBody Mesecni mesecni){
         if(!mesecniRepository.existsById(mesecni.getIdMesecni())) {
             
@@ -69,6 +76,7 @@ public class  MesecniRestController {
     }
     
     @DeleteMapping("mesecni/{id}")
+	@ApiOperation(value = "Deletes an existing monthly report")
     public ResponseEntity<Mesecni> deleteMesecni(@PathVariable("id") Integer id){
     	if(!mesecniRepository.existsById(id)) {
             return new ResponseEntity<Mesecni>(HttpStatus.NO_CONTENT);

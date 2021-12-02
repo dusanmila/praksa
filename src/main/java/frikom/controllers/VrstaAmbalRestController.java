@@ -18,15 +18,19 @@ import frikom.jpa.Artikl;
 import frikom.jpa.JedMere;
 import frikom.jpa.VrstaAmbal;
 import frikom.repos.VrstaAmbalRepository;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @CrossOrigin
 @RestController
+@Api(tags = "Packaging type REST controller")
 public class VrstaAmbalRestController {
 	
 	@Autowired
 	private VrstaAmbalRepository vrstaAmbalRepository;
 	
 	@GetMapping("vrstaambal")
+	@ApiOperation(value = "Returns all packaging types")
 	public Collection<VrstaAmbal> getVrsteAmbal(){
 		
 		return vrstaAmbalRepository.findAll();
@@ -34,18 +38,21 @@ public class VrstaAmbalRestController {
 	}
 	
 	@GetMapping("vrstaambal/{id}")
+	@ApiOperation(value = "Returns a packaging type by id")
 	public VrstaAmbal getVrstaAmbalByID(@PathVariable ("id") Integer id) {
 		return vrstaAmbalRepository.getById(id);
 	}
 	
 //	@GetMapping("jedmere/{naziv}")
+	// 	@ApiOperation(value = "Returns a packaging type by name")
 //	public Collection<VrstaAmbal> getVrstaAmbalByNaziv(@PathVariable ("naziv") String naziv) {
 //		return vrstaAmbalRepository.findByvrstaAmbalazeContainingIgnoreCase(naziv);
 //	}
 	
-	@PostMapping
+	@PostMapping("vrstaambal")
+	@ApiOperation(value = "Inserts a new packaging type")
 	public ResponseEntity<VrstaAmbal> insertVrstaAmbal(@RequestBody VrstaAmbal vrstaambal){
-		if(!vrstaAmbalRepository.existsById(vrstaambal.getId())) {
+		if(!vrstaAmbalRepository.existsById(vrstaambal.getIdVrstaAmbalaze())) {
 			vrstaAmbalRepository.save(vrstaambal);
 			
 			return new ResponseEntity<VrstaAmbal>(HttpStatus.OK);
@@ -55,8 +62,9 @@ public class VrstaAmbalRestController {
 	}
 	
 	@PutMapping("vrstaambal")
+	@ApiOperation(value = "Updates an existing packaging type")
 	public ResponseEntity<VrstaAmbal> updateVrstaAmbal(@RequestBody VrstaAmbal vrstaambal){
-		if(!vrstaAmbalRepository.existsById(vrstaambal.getId())) {
+		if(!vrstaAmbalRepository.existsById(vrstaambal.getIdVrstaAmbalaze())) {
 			
 			return new ResponseEntity<VrstaAmbal>(HttpStatus.NO_CONTENT);
 		}else {
@@ -66,6 +74,7 @@ public class VrstaAmbalRestController {
 	}
 	
 	@DeleteMapping("vrstaambal/{id}")
+	@ApiOperation(value = "Deletes an existing packaging type")
 	public ResponseEntity<VrstaAmbal> deleteVrstaAmbal(@PathVariable("id") Integer id){
 if(!vrstaAmbalRepository.existsById(id)) {
 			return new ResponseEntity<VrstaAmbal>(HttpStatus.NO_CONTENT);

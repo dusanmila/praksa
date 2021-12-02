@@ -18,9 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 import frikom.jpa. IstorNiel;
 import frikom.jpa.KategObj;
 import frikom.repos. IstorNielRepository;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
  
 @CrossOrigin
 @RestController
+@Api(tags = "Nielsen history REST controller")
 public class  IstorNielRestController {
 
     @Autowired
@@ -30,12 +33,14 @@ public class  IstorNielRestController {
     private IstorNielRepository istorNielRepository;
 
     @GetMapping("istorNiel")
+	@ApiOperation(value = "Returns all Nielsen histories")
     public Collection< IstorNiel> getIstorNiel(){
     	
         return istorNielRepository.findAll();
     }
     
     @GetMapping("istorNiel/{id}")
+	@ApiOperation(value = "Returns a Nielsen history by id")
     public IstorNiel getIstorNiel(@PathVariable ("id") Integer id) {
     	
         return istorNielRepository.getById(id);
@@ -43,6 +48,7 @@ public class  IstorNielRestController {
     
   
     @PostMapping("istorNiel")
+	@ApiOperation(value = "Inserts a new Nielsen history")
     public ResponseEntity<IstorNiel> insertIstorNiel(@RequestBody IstorNiel istorNiel){
         if(!istorNielRepository.existsById(istorNiel.getIdIstorNiel())) {
         	istorNielRepository.save(istorNiel);
@@ -56,6 +62,7 @@ public class  IstorNielRestController {
     }
     
     @PutMapping("istorNiel")
+	@ApiOperation(value = "Updates an existing Nielsen history")
     public ResponseEntity<IstorNiel> updateIstorNiel(@RequestBody IstorNiel istorNiel){
         if(!istorNielRepository.existsById(istorNiel.getIdIstorNiel())) {
             
@@ -69,6 +76,7 @@ public class  IstorNielRestController {
     }
     
     @DeleteMapping("istorNiel/{id}")
+	@ApiOperation(value = "Deletes an existing Nielsen history")
     public ResponseEntity<IstorNiel> deleteIstorNiel(@PathVariable("id") Integer id){
     	if(!istorNielRepository.existsById(id)) {
             return new ResponseEntity<IstorNiel>(HttpStatus.NO_CONTENT);

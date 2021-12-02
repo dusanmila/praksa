@@ -17,9 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import frikom.jpa. Nielsen;
 import frikom.repos. NielsenRepository;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @CrossOrigin
 @RestController
+@Api(tags = "Nielsen REST controller")
 public class  NielsenRestController {
 
     @Autowired
@@ -29,12 +32,14 @@ public class  NielsenRestController {
     private NielsenRepository nielsenRepository;
 
     @GetMapping("nielsen")
+	@ApiOperation(value = "Returns all Nielsen reports")
     public Collection< Nielsen> getNielsen(){
     	
         return nielsenRepository.findAll();
     }
     
     @GetMapping("nielsen/{id}")
+	@ApiOperation(value = "Returns a Nielsen report by id")
     public Nielsen getNielsen(@PathVariable ("id") Integer id) {
     	
         return nielsenRepository.getById(id);
@@ -42,6 +47,7 @@ public class  NielsenRestController {
     
   
     @PostMapping("nielsen")
+	@ApiOperation(value = "Inserts a new Nielsen")
     public ResponseEntity<Nielsen> insertNielsen(@RequestBody Nielsen nielsen){
         if(!nielsenRepository.existsById(nielsen.getIdNielsen())) {
         	nielsenRepository.save(nielsen);
@@ -55,6 +61,7 @@ public class  NielsenRestController {
     }
      
     @PutMapping("nielsen")
+	@ApiOperation(value = "Updates an existing Nielsen")
     public ResponseEntity<Nielsen> updateNielsen(@RequestBody Nielsen nielsen){
         if(!nielsenRepository.existsById(nielsen.getIdNielsen())) {
             
@@ -68,6 +75,7 @@ public class  NielsenRestController {
     }
     
     @DeleteMapping("nielsen/{id}")
+	@ApiOperation(value = "Deletes an existing Nielsen")
     public ResponseEntity<Nielsen> deleteNielsen(@PathVariable("id") Integer id){
     	if(!nielsenRepository.existsById(id)) {
             return new ResponseEntity<Nielsen>(HttpStatus.NO_CONTENT);

@@ -17,9 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import frikom.jpa.KategObj;
 import frikom.repos.KategObjRepository;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @CrossOrigin
 @RestController
+@Api(tags = "Object category REST controller")
 public class KategObjRestController {
 
 	@Autowired
@@ -29,21 +32,25 @@ public class KategObjRestController {
 	private KategObjRepository kategObjRepository;
 
 	@GetMapping("kategObj")
+	@ApiOperation(value = "Returns all object categories")
 	public Collection<KategObj> getKategObjekata() {
 		return kategObjRepository.findAll();
 	}
 
 	@GetMapping("kategObj/{id}")
+	@ApiOperation(value = "Returns an object category by id")
 	public KategObj getKategObj(@PathVariable("id") Integer id) {
 		return kategObjRepository.getById(id);
 	}
 
 //	@GetMapping("kategObj/{naziv}")
+	//@ApiOperation(value = "Returns an object category by id")
 //	public Collection<KategObj> getKategObjByNaziv(@PathVariable("naziv") String naziv) {
 //		return kategObjRepository.findByNazivKategorijeContainingIgnoreCase(naziv);
 //	}
 
 	@PostMapping("kategObj")
+	@ApiOperation(value = "Inserts a new object category")
 	public ResponseEntity<KategObj> insertKategObj(@RequestBody KategObj kategObj) {
 		if (!kategObjRepository.existsById(kategObj.getIdKategObj())) {
 			kategObjRepository.save(kategObj);
@@ -53,6 +60,7 @@ public class KategObjRestController {
 	}
 
 	@PutMapping("kategObj")
+	@ApiOperation(value = "Updates an existing object category")
 	public ResponseEntity<KategObj> updateKategObj(@RequestBody KategObj kategObj) {
 		if (!kategObjRepository.existsById(kategObj.getIdKategObj())) {
 			return new ResponseEntity<KategObj>(HttpStatus.CONFLICT);
@@ -62,6 +70,7 @@ public class KategObjRestController {
 	}
 
 	@DeleteMapping("kategObj/{id}")
+	@ApiOperation(value = "Deletes an existing object category")
 	public ResponseEntity<KategObj> deleteKategObj(@PathVariable("id") Integer id) {
 		if (!kategObjRepository.existsById(id)) {
 			return new ResponseEntity<KategObj>(HttpStatus.CONFLICT);

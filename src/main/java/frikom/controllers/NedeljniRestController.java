@@ -17,9 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import frikom.jpa. Nedeljni;
 import frikom.repos. NedeljniRepository;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @CrossOrigin
 @RestController
+@Api(tags = "Weekly report REST controller")
 public class  NedeljniRestController {
 
     @Autowired
@@ -29,12 +32,14 @@ public class  NedeljniRestController {
     private NedeljniRepository nedeljniRepository;
 
     @GetMapping("nedeljni")
+	@ApiOperation(value = "Returns all weekly reports")
     public Collection< Nedeljni> getNedeljni(){
     	
         return nedeljniRepository.findAll();
     }
     
     @GetMapping("nedeljni/{id}")
+	@ApiOperation(value = "Returns a weekly report by id")
     public Nedeljni getNedeljni(@PathVariable ("id") Integer id) {
     	
         return nedeljniRepository.getById(id);
@@ -42,6 +47,7 @@ public class  NedeljniRestController {
     
   
     @PostMapping("nedeljni")
+	@ApiOperation(value = "Inserts a new weekly report in the database")
     public ResponseEntity<Nedeljni> insertNedeljni(@RequestBody Nedeljni nedeljni){
         if(!nedeljniRepository.existsById(nedeljni.getIdNedeljni())) {
         	nedeljniRepository.save(nedeljni);
@@ -55,6 +61,7 @@ public class  NedeljniRestController {
     } 
     
     @PutMapping("nedeljni")
+	@ApiOperation(value = "Updates an existing weekly report")
     public ResponseEntity<Nedeljni> updateNedeljni(@RequestBody Nedeljni nedeljni){
         if(!nedeljniRepository.existsById(nedeljni.getIdNedeljni())) {
             
@@ -68,6 +75,7 @@ public class  NedeljniRestController {
     }
     
     @DeleteMapping("nedeljni/{id}")
+	@ApiOperation(value = "Deletes an existing weekly report")
     public ResponseEntity<Nedeljni> deleteNedeljni(@PathVariable("id") Integer id){
     	if(!nedeljniRepository.existsById(id)) {
             return new ResponseEntity<Nedeljni>(HttpStatus.NO_CONTENT);

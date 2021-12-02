@@ -75,8 +75,6 @@ public class JedMere implements Serializable {
 		return artikl;
 	}
 	
-	public int getId() {
-		return idJedMere;
-	}
+
 
 }
