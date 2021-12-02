@@ -3,14 +3,11 @@ package frikom.jpa;
 import java.io.Serializable;
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 
 /**
  * The persistent class for the istor_niel database table.
  * 
  */
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 @Entity
 @Table(name="istor_niel")
 @NamedQuery(name="IstorNiel.findAll", query="SELECT i FROM IstorNiel i")
@@ -23,16 +20,22 @@ public class IstorNiel implements Serializable {
 	@Column(name="id_istor_niel")
 	private Integer idIstorNiel;
 
-	@Column(name="id_artikl")
-	private Integer idArtikl;
-
-	@Column(name="id_datum_do")
-	private Integer idDatumDo;
-
-	@Column(name="id_datum_od")
-	private Integer idDatumOd;
-
 	private Integer prodaja;
+
+	//bi-directional many-to-one association to Datum
+	@ManyToOne
+	@JoinColumn(name="id_datum_do")
+	private Datum datum1;
+
+	//bi-directional many-to-one association to Datum
+	@ManyToOne
+	@JoinColumn(name="id_datum_od")
+	private Datum datum2;
+
+	//bi-directional many-to-one association to Artikl
+	@ManyToOne
+	@JoinColumn(name="id_artikl")
+	private Artikl artikl;
 
 	public IstorNiel() {
 	}
@@ -45,36 +48,36 @@ public class IstorNiel implements Serializable {
 		this.idIstorNiel = idIstorNiel;
 	}
 
-	public Integer getIdArtikl() {
-		return this.idArtikl;
-	}
-
-	public void setIdArtikl(Integer idArtikl) {
-		this.idArtikl = idArtikl;
-	}
-
-	public Integer getIdDatumDo() {
-		return this.idDatumDo;
-	}
-
-	public void setIdDatumDo(Integer idDatumDo) {
-		this.idDatumDo = idDatumDo;
-	}
-
-	public Integer getIdDatumOd() {
-		return this.idDatumOd;
-	}
-
-	public void setIdDatumOd(Integer idDatumOd) {
-		this.idDatumOd = idDatumOd;
-	}
-
 	public Integer getProdaja() {
 		return this.prodaja;
 	}
 
 	public void setProdaja(Integer prodaja) {
 		this.prodaja = prodaja;
+	}
+
+	public Datum getDatum1() {
+		return this.datum1;
+	}
+
+	public void setDatum1(Datum datum1) {
+		this.datum1 = datum1;
+	}
+
+	public Datum getDatum2() {
+		return this.datum2;
+	}
+
+	public void setDatum2(Datum datum2) {
+		this.datum2 = datum2;
+	}
+
+	public Artikl getArtikl() {
+		return this.artikl;
+	}
+
+	public void setArtikl(Artikl artikl) {
+		this.artikl = artikl;
 	}
 
 }
