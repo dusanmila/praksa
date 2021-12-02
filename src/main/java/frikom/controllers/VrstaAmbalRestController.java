@@ -49,7 +49,7 @@ public class VrstaAmbalRestController {
 //		return vrstaAmbalRepository.findByvrstaAmbalazeContainingIgnoreCase(naziv);
 //	}
 	
-	@PostMapping
+	@PostMapping("vrstaambal")
 	@ApiOperation(value = "Inserts a new packaging type")
 	public ResponseEntity<VrstaAmbal> insertVrstaAmbal(@RequestBody VrstaAmbal vrstaambal){
 		if(!vrstaAmbalRepository.existsById(vrstaambal.getIdVrstaAmbalaze())) {
